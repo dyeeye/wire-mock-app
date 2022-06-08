@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:wire-mock="http://www.mulesoft.org/schema/mule/wire-mock" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/wire-mock http://www.mulesoft.org/schema/mule/wire-mock/current/mule-wire-mock.xsd">
+	<configuration-properties doc:name="Configuration properties" doc:id="ce263d36-8341-4981-aae8-58277ddda89b" file="config.yaml"/>
+		<wire-mock:config name="Wire_mock_module_Config" doc:name="Wire-mock-module Config" doc:id="ad0a3cf5-fc9e-4eaa-86c4-5cce8f190b24" port="${wiremock.port}"/>
+	<http:request-config name="Wire_Mock_HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="14b11807-af78-49ca-9808-f13a77065291" >
+		<http:request-connection host="0.0.0.0" port="${wiremock.port}" />
+	</http:request-config>
+</mule>

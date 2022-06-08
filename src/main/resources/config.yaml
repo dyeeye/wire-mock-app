@@ -1,0 +1,6 @@
+wiremock:
+  port: "8081"
+  mappings:
+    schedule:
+      every: "1440"
+      delay: "1"

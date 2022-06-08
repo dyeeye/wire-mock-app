@@ -1,0 +1,86 @@
+{
+	"info": {
+		"_postman_id": "cc67e6f4-49dd-4103-abc3-23a9e80150b8",
+		"name": "Wire Mock Module",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1361638"
+	},
+	"item": [
+		{
+			"name": "Add Mapping to Wire Mock CloudHub",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"mappings\": [\r\n        {\r\n            \"request\": {\r\n                \"method\": \"GET\",\r\n                \"url\": \"/one\"\r\n            },\r\n            \"response\": {\r\n                \"status\": 200\r\n            }\r\n        },\r\n        {\r\n            \"id\": \"8c5db8b0-2db4-4ad7-a99f-38c9b00da3f7\",\r\n            \"request\": {\r\n                \"url\": \"/two\"\r\n            },\r\n            \"response\": {\r\n                \"body\": \"Updated\"\r\n            }\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{cloudhub}}/__admin/mappings/import",
+					"protocol": "http",
+					"host": [
+						"{{cloudhub}}"
+					],
+					"path": [
+						"__admin",
+						"mappings",
+						"import"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mock Serwer Swagger UI",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://{{cloudhub}}/__admin/swagger-ui/",
+					"protocol": "http",
+					"host": [
+						"{{cloudhub}}"
+					],
+					"path": [
+						"__admin",
+						"swagger-ui",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "cloudhub",
+			"value": "wire-mock-app.us-e2.cloudhub.io",
+			"type": "string"
+		}
+	]
+}

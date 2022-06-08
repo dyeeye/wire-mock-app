@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:wire-mock="http://www.mulesoft.org/schema/mule/wire-mock" 
+	xmlns:tls="http://www.mulesoft.org/schema/mule/tls"
+	xmlns:api-gateway="http://www.mulesoft.org/schema/mule/api-gateway" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd
+http://www.mulesoft.org/schema/mule/tls http://www.mulesoft.org/schema/mule/tls/current/mule-tls.xsd
+http://www.mulesoft.org/schema/mule/wire-mock http://www.mulesoft.org/schema/mule/wire-mock/current/mule-wire-mock.xsd">
+	<flow name="wire-mock-server-listener-flow" doc:id="37bb47bb-4cab-4449-ab69-9eba19c3e7b4" >
+		<wire-mock:listener doc:name="Listener" doc:id="297aa668-1def-4dd2-88a8-0c396cbe9326" config-ref="Wire_mock_module_Config"/>
+		<logger level="INFO" doc:name="Finished" doc:id="bbff53b5-1030-40c3-9ac2-6f73d77bcde8" />
+	</flow>
+	<flow name="upload-mappings-scheduled-flow" doc:id="d4c10a23-b08c-4744-a2c0-8697cb7ba854" >
+		<scheduler doc:name="Scheduler" doc:id="3209d2c6-7dd6-4eb0-966f-0f323627f69d" >
+			<scheduling-strategy >
+				<fixed-frequency frequency="${wiremock.mappings.schedule.every}" timeUnit="MINUTES" startDelay="${wiremock.mappings.schedule.delay}"/>
+			</scheduling-strategy>
+		</scheduler>
+		<http:request method="GET" doc:name="Get Mappings" doc:id="86805f81-cb71-4aa6-a2a7-164d74cf7b52" url="https://gist.githubusercontent.com/dyeeye/203723a53a916df4ccd3aa8c52dafc56/raw/28c3a4ce2754be1b4be375f36fa13528c1dd6b33/wire-mock-mappings.json" outputMimeType="application/json"/>
+		<http:request method="POST" doc:name="Upload Mappings" doc:id="3ed67475-cb06-4bf6-8717-08d2466c8a3b" config-ref="Wire_Mock_HTTP_Request_configuration" path="/__admin/mappings/import"/>
+		<logger level="INFO" doc:name="Finished" doc:id="a4293aed-f054-4944-b1f5-dbe429bedd15" message="Mapping uploaded to Wire Mock"/>
+	</flow>
+</mule>

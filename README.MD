@@ -34,6 +34,16 @@ How to prepare request matching you can find [here](https://wiremock.org/docs/re
 
 To generate response, you can use Handlebars templating language. You can find [here](https://wiremock.org/docs/request-matching/) more about how to do it.
 
+## Build
+
+If you can just run the application and check how it works with sample mapping you can directly get **wire-mock-app-1.0.0-mule-application.jar** from **bin** folder and upload it to Cloudhub.
+If you like to build it on your own follow the steps:
+1. Download Wire Mock Extension (for mulesoft application) from [here](https://github.com/dyeeye/wire-mock-module)
+2. Change in pom groupid and push the extension to Anypoint Exchange
+3. In Wire Mock App in pom.xml update the dependency with artificatId wire-mock-module
+4. Apply your changes like uploading mock mappings
+5. Build and deploy to CloudHub
+
 ## Usage
 
 To use mocking service, give the user hostname, which is the application cloud hub name and the prefix of the application I suggested earlier, for example
